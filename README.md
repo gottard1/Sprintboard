@@ -92,10 +92,10 @@ Você precisa ter um banco de dados e um usuário criados no PostgreSQL.
     CREATE DATABASE sprintboard_db;
 
     -- Crie um novo usuário com uma senha segura
-    CREATE USER marcel_anesi WITH PASSWORD 'sprintboard';
+    CREATE USER `seu_user` WITH PASSWORD `sua_senha`;
 
     -- Dê ao usuário todas as permissões no novo banco
-    GRANT ALL PRIVILEGES ON DATABASE sprintboard_db TO marcel_anesi;
+    GRANT ALL PRIVILEGES ON DATABASE sprintboard_db TO `seu_user`;
     ```
     *Lembre-se de substituir os nomes e a senha se desejar.*
 
@@ -116,7 +116,7 @@ As credenciais do banco e outras chaves secretas são gerenciadas por um arquivo
 
     # URL de Conexão com o Banco de Dados PostgreSQL
     # Formato: postgresql://<usuario>:<senha>@<host>:<porta>/<nome_do_banco>
-    DATABASE_URL='postgresql://marcel_anesi:sprintboard@localhost:5432/sprintboard_db'
+    DATABASE_URL='postgresql://`seu_user`:`sua_senha`sprintboard""@localhost:5432/sprintboard_db'
     ```
 
 ### 6. Inicializar o Banco de Dados
@@ -170,6 +170,4 @@ Distribuído sob a licença MIT. Veja o arquivo `LICENSE` para mais informaçõe
 
 ## 👤 Contato
 
-Marcel Anesi - [Seu Email](mailto:seuemail@exemplo.com) - [Seu LinkedIn](https://linkedin.com/in/seu-usuario)
-
-Link do Projeto: [https://github.com/seu-usuario/seu-repositorio](https://github.com/seu-usuario/seu-repositorio)
+Marcel Anesi - [Seu Email](mailto:marcel.id22@gmail.com) - [Seu LinkedIn](https://linkedin.com/in/marcel-felipe)
