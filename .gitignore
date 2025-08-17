@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Arquivos de Sistema Operacional
+# Arquivos de metadados gerados pelo macOS, Windows ou Linux.
+.DS_Store
+Thumbs.db
+desktop.ini

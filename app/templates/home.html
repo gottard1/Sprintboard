@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quadro Kanban</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Sprintboard</h1>
+        <button id="open-add-task-modal-btn" class="add-task-button">+ Nova Tarefa</button>
+        <a class="exit-button" href="{{ url_for('users.logout') }}">Sair</a>
+    </header>
+
+    <main class="kanban-board">
+        <div class="column" data-status="PENDING">
+            <h2>Pendente</h2>
+            {% for task in tasks if task.status.value == 'PENDING' %}
+                <div class="card" draggable="true" data-id="{{ task.id }}">
+                    <p class="description">{{ task.description }}</p>
+                    <small>Criado: {{ task.creation_date.strftime('%d/%m/%Y') }}</small>
+                    {% if task.urgency %}<span class="urgency">Prioridade: {{ task.urgency }}</span>{% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="column" data-status="IN_PROGRESS">
+            <h2>Em andamento</h2>
+            {% for task in tasks if task.status.value == 'IN_PROGRESS' %}
+                <div class="card" draggable="true" data-id="{{ task.id }}">
+                    <p class="description">{{ task.description }}</p>
+                    <small>Criado: {{ task.creation_date.strftime('%d/%m/%Y') }}</small>
+                    {% if task.urgency %}<span class="urgency">Prioridade: {{ task.urgency }}</span>{% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="column" data-status="COMPLETED">
+            <h2>Completa</h2>
+            {% for task in tasks if task.status.value == 'COMPLETED' %}
+                <div class="card" draggable="true" data-id="{{ task.id }}">
+                    <p class="description">{{ task.description }}</p>
+                    <small>Criado: {{ task.creation_date.strftime('%d/%m/%Y') }}</small>
+                    {% if task.urgency %}<span class="urgency">Prioridade: {{ task.urgency }}</span>{% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="column" data-status="CANCELED">
+            <h2>Cancelada</h2>
+            {% for task in tasks if task.status.value == 'CANCELED' %}
+                <div class="card" draggable="true" data-id="{{ task.id }}">
+                    <p class="description">{{ task.description }}</p>
+                    <small>Criado: {{ task.creation_date.strftime('%d/%m/%Y') }}</small>
+                    {% if task.urgency %}<span class="urgency">Prioridade: {{ task.urgency }}</span>{% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <div id="add-task-modal-backdrop" class="modal-backdrop hidden">
+        <div class="modal-content">
+            <h2>Adicionar Nova Tarefa</h2>
+            <form id="add-task-form">
+                <div class="form-group">
+                    <label for="description">Descrição da Tarefa</label>
+                    <textarea id="description" name="description" required rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status" required>
+                        <option value="PENDING" selected>Pendente</option>
+                        <option value="IN_PROGRESS">Em Andamento</option>
+                        <option value="COMPLETED">Completa</option>
+                        <option value="CANCELED">Cancelada</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="urgency">Urgência</label>
+                    <select id="urgency" name="urgency">
+                        <option value="LOW">Baixa</option>
+                        <option value="NORMAL" selected>Normal</option>
+                        <option value="HIGH">Alta</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="due_date">Data de Entrega (Opcional)</label>
+                    <input type="date" id="due_date" name="due_date">
+                </div>
+                <input type="hidden" id="creation_date" name="creation_date">
+                <div class="form-actions">
+                    <button type="button" id="cancel-add-task-btn" class="button-secondary">Cancelar</button>
+                    <button type="submit" class="button-primary">Salvar Tarefa</button>
+                </div>
+            </form>
+            <button id="close-modal-btn" class="close-button">&times;</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+</body>
+</html>
